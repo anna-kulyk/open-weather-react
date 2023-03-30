@@ -25,7 +25,7 @@ const Weather = () => {
             <div className="location">{weatherData.name}</div>
             <div className="weather-row">
                 <div className="weather-col">
-                    <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} />
+                    <img src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`} alt='icon' />
                     <div className="description">{weatherData.weather[0].description}</div>
                 </div>
                 <div className="temperature">{Math.round(weatherData.main.temp)}°F</div>
