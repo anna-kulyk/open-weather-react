@@ -1,0 +1,10 @@
+.location-input {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 10px;
+}
+
+.location-input:focus {
+    outline: none;
+}
