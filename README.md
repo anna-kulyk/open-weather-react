@@ -4,7 +4,7 @@ A simple react application with cute robots.
 
 ## [Check the live demo](https://open-weather-react.netlify.app/)
 
-![Screenshot](https://raw.githubusercontent.com/anna-kulyk/robofriends/master/src/assets/images/openweather.jpg)
+![Screenshot](https://raw.githubusercontent.com/anna-kulyk/open-weather-react/master/src/assets/images/openweather.jpg)
 
 ## Installation
 
