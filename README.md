@@ -1,6 +1,6 @@
-# Robofriends
+# Open Weather Forecast Web Page using React
 
-A simple react application with cute robots.
+A simple react application that displays real-time weather data for any location.
 
 ## [Check the live demo](https://open-weather-react.netlify.app/)
 
