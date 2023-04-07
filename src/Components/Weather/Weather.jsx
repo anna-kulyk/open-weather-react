@@ -19,6 +19,16 @@ const Weather = () => {
 
     if (!weatherData) return <div>Loading...</div>;
 
+    if (weatherData.cod === '404') {
+        return (
+            <div className="weather">
+                <LocationInput newLocationHandler={setLocation} />
+                <div className="location">Ooops...</div>
+                <div className="location-error">Can't find this location</div>
+            </div>
+        );
+    }
+
     return (
         <div className="weather">
             <LocationInput newLocationHandler={setLocation} />

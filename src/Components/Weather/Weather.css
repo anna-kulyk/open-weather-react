@@ -35,3 +35,7 @@
     font-weight: bold;
     margin-right: 1rem;
 }
+
+.location-error {
+    margin: 3rem 0;
+}
