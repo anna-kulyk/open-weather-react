@@ -1,18 +1,26 @@
 import React, { useState } from 'react';
 import './LocationInput.css';
 
-const LocationInput = ({newLocationHandler}) => {
-    
-    const [locationInput, setLocationInput] = useState('Enter location...');
+const LocationInput = ({ newLocationHandler }) => {
+
+    const [locationInput, setLocationInput] = useState('');
+
+    const inputLocationHandler = () => {
+        const newLocation = locationInput.trim();
+        if (newLocation !== '') {
+            newLocationHandler(newLocation);
+            setLocationInput('');
+        }
+    }
 
     return (
-        <input type="text" 
-               className='location-input'
-               value={locationInput}
-               onChange={(e) => setLocationInput(e.target.value)}
-               onBlur={(e) => {if (locationInput !== "") newLocationHandler(e.target.value)}}
-               onKeyDown={(e) => {if (e.key === "Enter" && locationInput !== "") newLocationHandler(e.target.value)}}
-               onFocus={() => setLocationInput('')} />
+        <input type="text"
+            className='location-input'
+            placeholder='Enter location...'
+            value={locationInput}
+            onChange={(e) => setLocationInput(e.target.value)}
+            onBlur={inputLocationHandler}
+            onKeyDown={(e) => { if (e.key === "Enter") inputLocationHandler() }} />
     );
 };
 
