@@ -14,7 +14,8 @@ const Weather = () => {
     useEffect(() => {
         fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=imperial`)
             .then((response) => response.json())
-            .then((data) => setWeatherData(data));
+            .then((data) => setWeatherData(data))
+            .catch((error) => console.log(error));
     }, [location]);
 
     if (!weatherData) return <div>Loading...</div>;
