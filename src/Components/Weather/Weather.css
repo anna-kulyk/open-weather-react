@@ -1,39 +1,113 @@
 .weather {
-    background-color: rgba(180,211,239, 0.5);
     padding: 2rem;
     border-radius: 20px;
     display: flex;
     justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    flex-direction: row;
     font-size: 1.3rem;
+    transition: all 0.3s ease 0s;
+    background: rgba( 255, 255, 255, 0.4 );
+    backdrop-filter: blur( 15px );
+    -webkit-backdrop-filter: blur( 15px );
+    border: 1px solid rgba( 255, 255, 255, 0.18 );
+    position: relative;
+    gap: 2rem;
 }
 
-.location {
-    margin-top: 3rem;
+.weather-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+}
+
+.weather-current {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.weather-location {
     font-size: 5rem;
 }
 
-.weather-row {
-    margin: 1rem 0 3rem;
-    display: flex;
-    align-items: center;
-    gap: 4rem;
+.weather-image {
+    margin: -1rem 0;
 }
 
-.weather-col {
+.weather-temperature {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 0.5rem;
 }
 
 .temperature {
     font-size: 3rem;
 }
 
-.details span {
+.temperature-feels-like {
+    border-top: 1px rgb(89, 89, 89) solid;
+    font-size: 1rem;
+    line-height: 200%;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.forecast, .details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.forecast-title, .details-title {
     font-weight: bold;
-    margin-right: 1rem;
+}
+
+.forecast-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.forecast-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid rgba( 255, 255, 255, 0.18 );
+    border-radius: 20px;
+    padding: 1rem;
+}
+
+.forecast-time, .forecast-temp {
+    font-size: 1rem;
+}
+
+.forecast-img {
+    margin: -0.5rem 0;
+}
+
+.forecast-img img {
+    width: 75px;
+    height: 75px;
+}
+
+.details-body {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+}
+
+.details span {
+    
 }
 
 .location-error {
