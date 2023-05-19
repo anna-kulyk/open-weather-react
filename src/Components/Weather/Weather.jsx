@@ -3,7 +3,8 @@ import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
 import ToggleSwitch from '../ToggleUnitsSwitch/ToggleUnitsSwitch';
-import { convertTime, convertTimeDay } from '../../helpers/converters';
+import { formatTime, formatTimeDay } from '../../helpers/dateFormat';
+import unitsData from '../../helpers/unitsData';
 
 
 const Weather = () => {
@@ -16,7 +17,7 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [location, setLocation] = useState('Kyiv');
-    const [units, setUnits] = useState('imperial');
+    const [units, setUnits] = useState(unitsData['imperial']);
     // console.log(weatherData);
 
     // if (window.navigator.geolocation) {
@@ -26,11 +27,11 @@ const Weather = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=${units}`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=${units.name}`)
             .then((response) => response.json())
             .then((data) => setWeatherData(data))
             .catch((error) => console.log(error))
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=${units}`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=${units.name}`)
             .then((response) => response.json())
             .then((data) => setForecastData(data))
             .catch((error) => console.log(error))
@@ -53,18 +54,15 @@ const Weather = () => {
         );
     }
 
-
-    const tempUnit = units == 'imperial' ? '°F' : '°C';
-    const speedUnit = units == 'imperial' ? 'mph' : 'm/s';
     const forecastElements = forecastData?.list.slice(0, 8).map((data, index) => {
         return (
             <div key={index} className="forecast-block">
-                <div className="forecast-time">{convertTime(data.dt, forecastData.city.timezone)}</div>
+                <div className="forecast-time">{formatTime(data.dt, forecastData.city.timezone)}</div>
                 <div className="forecast-img">
                     <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                         alt={data.weather[0].description} />
                 </div>
-                <div className="forecast-temp">{Math.round(data.main.temp)}{tempUnit}</div>
+                <div className="forecast-temp">{Math.round(data.main.temp)}{units.temp}</div>
             </div>
         );
     });
@@ -78,15 +76,15 @@ const Weather = () => {
                 <div className="weather-current">
                     <div className="weather-location">
                         <div className="weather-city">{weatherData.name}</div>
-                        <div className="weather-day">{`${weatherData.sys.country}, ${convertTimeDay(weatherData.dt, weatherData.timezone)}`}</div>
+                        <div className="weather-day">{`${weatherData.sys.country}, ${formatTimeDay(weatherData.dt, weatherData.timezone)}`}</div>
                     </div>
                     <img className='weather-image'
                         src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                         alt={weatherData.weather[0].description}
                         title={weatherData.weather[0].description} />
                     <div className="weather-temperature">
-                        <div className="temperature">{Math.round(weatherData.main.temp)}{tempUnit}</div>
-                        <div className="temperature-feels-like">Feels like: {Math.round(weatherData.main.feels_like)}{tempUnit}</div>
+                        <div className="temperature">{Math.round(weatherData.main.temp)}{units.temp}</div>
+                        <div className="temperature-feels-like">Feels like: {Math.round(weatherData.main.feels_like)}{units.temp}</div>
                     </div>
                 </div>
                 <ToggleSwitch setUnits={setUnits} />
@@ -109,16 +107,16 @@ const Weather = () => {
                             <div>Wind speed</div>
                             <div className=' details-data'>
                                 <div className='_icon-direction' ref={ref}></div>
-                                <div>{Math.round(weatherData.wind.speed)} {speedUnit}</div>
+                                <div>{Math.round(weatherData.wind.speed)} {units.speed}</div>
                             </div>
                         </div>
                         <div className="details-block">
                             <div>Sunrise</div>
-                            <div className='_icon-sunrise details-data'>{convertTime(weatherData.sys.sunrise, weatherData.timezone)}</div>
+                            <div className='_icon-sunrise details-data'>{formatTime(weatherData.sys.sunrise, weatherData.timezone)}</div>
                         </div>
                         <div className="details-block">
                             <div>Sunset</div>
-                            <div className='_icon-sunset details-data'>{convertTime(weatherData.sys.sunset, weatherData.timezone)}</div>
+                            <div className='_icon-sunset details-data'>{formatTime(weatherData.sys.sunset, weatherData.timezone)}</div>
                         </div>
                     </div>
                 </div>

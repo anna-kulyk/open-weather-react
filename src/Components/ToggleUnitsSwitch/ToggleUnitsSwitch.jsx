@@ -1,6 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 import "./ToggleUnitsSwitch.css";
+import unitsData from '../../helpers/unitsData';
 
 const ToggleUnitsSwitch = ({ setUnits }) => {
 
@@ -9,10 +10,10 @@ const ToggleUnitsSwitch = ({ setUnits }) => {
     const checkboxHandler = () => {
         if (checkboxChecked) {
             setCheckboxChecked(false);
-            setUnits('imperial');
+            setUnits(unitsData['imperial']);
         } else {
             setCheckboxChecked(true);
-            setUnits('metric');
+            setUnits(unitsData['metric']);
         }
     }
 

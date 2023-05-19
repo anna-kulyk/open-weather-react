@@ -1,4 +1,4 @@
-function convertTime(unixTime, timezone) {
+function formatTime(unixTime, timezone) {
     let timezoneOffset = new Date().getTimezoneOffset() * 60;
     let date = new Date((unixTime + timezoneOffset + timezone) * 1000);
     let hours = date.getHours();
@@ -7,7 +7,7 @@ function convertTime(unixTime, timezone) {
     return time;
 }
 
-function convertTimeDay(unixTime, timezone) {
+function formatTimeDay(unixTime, timezone) {
     let timezoneOffset = new Date().getTimezoneOffset() * 60;
     let date = new Date((unixTime + timezoneOffset + timezone) * 1000);
     let hours = date.getHours();
@@ -19,4 +19,4 @@ function convertTimeDay(unixTime, timezone) {
     return output;
 }
 
-export { convertTime, convertTimeDay };
+export { formatTime, formatTimeDay };
