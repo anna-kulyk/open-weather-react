@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     flex-direction: row;
+    flex-wrap: wrap;
     font-size: 1.3rem;
     transition: all 0.3s ease 0s;
     background: rgba( 255, 255, 255, 0.4 );
@@ -98,10 +99,6 @@
     font-size: 1rem;
 }
 
-/* .forecast-time, .forecast-temp {
-    font-size: 1rem;
-} */
-
 .forecast-img {
     margin: -0.5rem 0;
 }
@@ -117,8 +114,14 @@
     gap: 1rem;
 }
 
-.details span {
-    
+.details-block {
+    gap: 1rem;
+}
+
+.details-data {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
 }
 
 .location-error {
