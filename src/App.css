@@ -1,5 +1,5 @@
 .App {
-  background-image: url('../../assets/images/clouds.jpg');
+  background-image: url('./assets/images/clouds.jpg');
   background-size: cover;
   min-height: 100vh;
   display: flex;
