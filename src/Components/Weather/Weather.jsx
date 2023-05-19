@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
@@ -35,16 +35,18 @@ const Weather = () => {
             .finally(() => setIsLoading(false));
     }, [location]);
 
-    if (!weatherData) return (
+    if (!weatherData || !forecastData) return (
         <Loader />
     );
 
-    if (weatherData.cod === '404') {
+    if (weatherData.cod === '404' || forecastData.cod === '404') {
         return (
             <div className="weather">
-                <LocationInput newLocationHandler={setLocation} />
-                <div className="location">Ooops...</div>
-                <div className="location-error">Can't find this location</div>
+                <div className="weather-main">
+                    <LocationInput newLocationHandler={setLocation} />
+                    <div className="weather-city">Ooops...</div>
+                    <div className="location-error">{`Can't find this location: ${location}`}</div>
+                </div>
             </div>
         );
     }

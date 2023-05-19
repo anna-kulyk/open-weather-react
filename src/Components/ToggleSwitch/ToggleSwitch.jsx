@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./ToggleSwitch.css";
 
 const ToggleSwitch = () => {
 
     const [checkboxChecked, setCheckboxChecked] = useState(false);
 
-    const checkboxHandler = (e) => {
+    const checkboxHandler = () => {
         if (checkboxChecked) {
             setCheckboxChecked(false);
             console.log('F');

@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import './LocationInput.css';
 
 const LocationInput = ({ newLocationHandler }) => {
@@ -23,5 +24,9 @@ const LocationInput = ({ newLocationHandler }) => {
             onKeyDown={(e) => { if (e.key === "Enter") inputLocationHandler() }} />
     );
 };
+
+LocationInput.propTypes = {
+    newLocationHandler: PropTypes.func.isRequired
+}
 
 export default LocationInput;
