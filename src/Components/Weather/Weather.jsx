@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
-import ToggleSwitch from '../ToggleSwitch/ToggleSwitch';
+import ToggleSwitch from '../ToggleUnitsSwitch/ToggleUnitsSwitch';
 import { convertTime, convertTimeDay } from '../../helpers/converters';
 
 
@@ -16,6 +16,7 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [location, setLocation] = useState('Kyiv');
+    const [units, setUnits] = useState('imperial');
     // console.log(weatherData);
 
     // if (window.navigator.geolocation) {
@@ -25,16 +26,16 @@ const Weather = () => {
 
     useEffect(() => {
         setIsLoading(true)
-        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=imperial`)
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=${units}`)
             .then((response) => response.json())
             .then((data) => setWeatherData(data))
             .catch((error) => console.log(error))
-        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=imperial`)
+        fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=${units}`)
             .then((response) => response.json())
             .then((data) => setForecastData(data))
             .catch((error) => console.log(error))
             .finally(() => setIsLoading(false));
-    }, [location]);
+    }, [location, units]);
 
     if (!weatherData || !forecastData) return (
         <Loader />
@@ -52,7 +53,10 @@ const Weather = () => {
         );
     }
 
-    let forecastElements = forecastData?.list.slice(0, 8).map((data, index) => {
+
+    const tempUnit = units == 'imperial' ? '°F' : '°C';
+    const speedUnit = units == 'imperial' ? 'mph' : 'm/s';
+    const forecastElements = forecastData?.list.slice(0, 8).map((data, index) => {
         return (
             <div key={index} className="forecast-block">
                 <div className="forecast-time">{convertTime(data.dt, forecastData.city.timezone)}</div>
@@ -60,10 +64,10 @@ const Weather = () => {
                     <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                         alt={data.weather[0].description} />
                 </div>
-                <div className="forecast-temp">{Math.round(data.main.temp)}°F</div>
+                <div className="forecast-temp">{Math.round(data.main.temp)}{tempUnit}</div>
             </div>
         );
-    })
+    });
 
     if (ref.current !== null) ref.current.style.transform = `rotate(${weatherData.wind.deg}deg)`;
 
@@ -81,11 +85,11 @@ const Weather = () => {
                         alt={weatherData.weather[0].description}
                         title={weatherData.weather[0].description} />
                     <div className="weather-temperature">
-                        <div className="temperature">{Math.round(weatherData.main.temp)}°F</div>
-                        <div className="temperature-feels-like">Feels like: {Math.round(weatherData.main.feels_like)}°F</div>
+                        <div className="temperature">{Math.round(weatherData.main.temp)}{tempUnit}</div>
+                        <div className="temperature-feels-like">Feels like: {Math.round(weatherData.main.feels_like)}{tempUnit}</div>
                     </div>
                 </div>
-                <ToggleSwitch />
+                <ToggleSwitch setUnits={setUnits} />
             </div>
             <div className="weather-info">
                 <div className="weather-forecast forecast">
@@ -105,7 +109,7 @@ const Weather = () => {
                             <div>Wind speed</div>
                             <div className=' details-data'>
                                 <div className='_icon-direction' ref={ref}></div>
-                                <div>{Math.round(weatherData.wind.speed)} mph</div>
+                                <div>{Math.round(weatherData.wind.speed)} {speedUnit}</div>
                             </div>
                         </div>
                         <div className="details-block">

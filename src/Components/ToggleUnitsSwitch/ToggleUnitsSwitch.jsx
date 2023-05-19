@@ -1,17 +1,18 @@
 import { useState } from "react";
-import "./ToggleSwitch.css";
+import PropTypes from 'prop-types';
+import "./ToggleUnitsSwitch.css";
 
-const ToggleSwitch = () => {
+const ToggleUnitsSwitch = ({ setUnits }) => {
 
     const [checkboxChecked, setCheckboxChecked] = useState(false);
 
     const checkboxHandler = () => {
         if (checkboxChecked) {
             setCheckboxChecked(false);
-            console.log('F');
+            setUnits('imperial');
         } else {
             setCheckboxChecked(true);
-            console.log('C');
+            setUnits('metric');
         }
     }
 
@@ -30,4 +31,8 @@ const ToggleSwitch = () => {
     );
 };
 
-export default ToggleSwitch;
+ToggleUnitsSwitch.propTypes = {
+    setUnits: PropTypes.func.isRequired
+}
+
+export default ToggleUnitsSwitch;
