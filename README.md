@@ -14,15 +14,11 @@ A simple react application that displays real-time weather data for any location
 
 In the project directory, you can run:
 
-### `npm start`
+### `npm run dev`
 
 Runs the app in the development mode.\
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.
 
 ### `npm run build`
 
@@ -58,4 +54,4 @@ Component-based architecture: The project uses React's component-based architect
 - Github: [@anna-kulyk](https://github.com/anna-kulyk)
 - LinkedIn: [@Ganna Kulyk](https://linkedin.com/in/ganna-kulyk-b90273252)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was bootstrapped with [Vite](https://vitejs.dev/).
