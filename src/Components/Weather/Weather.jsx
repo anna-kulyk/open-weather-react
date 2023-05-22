@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
@@ -7,11 +7,10 @@ import { formatTime } from '../../utils/dateFormat';
 import unitsData from '../../utils/unitsData';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import WeatherCurrent from '../WeatherCurrent/WeatherCurrent';
+import WeatherDetails from '../WeatherDetails/WeatherDetails';
 
 
 const Weather = () => {
-
-    const ref = useRef(null);
 
     const API_KEY = 'bf35cac91880cb98375230fb443a116f';
 
@@ -68,8 +67,6 @@ const Weather = () => {
         );
     });
 
-    if (ref.current !== null) ref.current.style.transform = `rotate(${weatherData.wind.deg}deg)`;
-
     return (
         <div className="weather">
             <div className="weather-main">
@@ -84,30 +81,7 @@ const Weather = () => {
                         {forecastData && forecastElements}
                     </div>
                 </div>
-                <div className="details">
-                    <div className="details-title">Weather details</div>
-                    <div className="details-body">
-                        <div className="details-block">
-                            <div>Humidity</div>
-                            <div className='_icon-humidity details-data'>{weatherData.main.humidity}%</div>
-                        </div>
-                        <div className="details-block">
-                            <div>Wind speed</div>
-                            <div className=' details-data'>
-                                <div className='_icon-direction' ref={ref}></div>
-                                <div>{Math.round(weatherData.wind.speed)} {units.speed}</div>
-                            </div>
-                        </div>
-                        <div className="details-block">
-                            <div>Sunrise</div>
-                            <div className='_icon-sunrise details-data'>{formatTime(weatherData.sys.sunrise, weatherData.timezone)}</div>
-                        </div>
-                        <div className="details-block">
-                            <div>Sunset</div>
-                            <div className='_icon-sunset details-data'>{formatTime(weatherData.sys.sunset, weatherData.timezone)}</div>
-                        </div>
-                    </div>
-                </div>
+                <WeatherDetails weatherData={weatherData} units={units} />
             </div>
             {isLoading && <Loader />}
         </div>
