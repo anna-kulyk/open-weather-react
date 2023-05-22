@@ -3,9 +3,10 @@ import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
 import ToggleSwitch from '../ToggleUnitsSwitch/ToggleUnitsSwitch';
-import { formatTime, formatTimeDay } from '../../utils/dateFormat';
+import { formatTime } from '../../utils/dateFormat';
 import unitsData from '../../utils/unitsData';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import WeatherCurrent from '../WeatherCurrent/WeatherCurrent';
 
 
 const Weather = () => {
@@ -73,20 +74,7 @@ const Weather = () => {
         <div className="weather">
             <div className="weather-main">
                 <LocationInput newLocationHandler={setLocation} />
-                <div className="weather-current">
-                    <div className="weather-location">
-                        <div className="weather-city">{weatherData.name}</div>
-                        <div className="weather-day">{`${weatherData.sys.country}, ${formatTimeDay(weatherData.dt, weatherData.timezone)}`}</div>
-                    </div>
-                    <img className='weather-image'
-                        src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
-                        alt={weatherData.weather[0].description}
-                        title={weatherData.weather[0].description} />
-                    <div className="weather-temperature">
-                        <div className="temperature">{Math.round(weatherData.main.temp)}{units.temp}</div>
-                        <div className="temperature-feels-like">Feels like: {Math.round(weatherData.main.feels_like)}{units.temp}</div>
-                    </div>
-                </div>
+                <WeatherCurrent weatherData={weatherData} units={units} />
                 <ToggleSwitch setUnits={setUnits} />
             </div>
             <div className="weather-info">

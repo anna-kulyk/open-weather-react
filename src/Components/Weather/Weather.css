@@ -24,48 +24,6 @@
     gap: 1rem;
 }
 
-.weather-current {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-}
-
-.weather-location {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.weather-city {
-    font-size: 4.5rem;
-}
-
-.weather-day {
-    font-size: 1rem;
-}
-
-.weather-image {
-    margin: -1rem 0;
-}
-
-.weather-temperature {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.temperature {
-    font-size: 3rem;
-}
-
-.temperature-feels-like {
-    border-top: 1px rgb(89, 89, 89) solid;
-    font-size: 1rem;
-    line-height: 200%;
-}
-
 .weather-info {
     display: flex;
     flex-direction: column;
