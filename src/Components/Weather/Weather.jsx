@@ -3,8 +3,9 @@ import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
 import ToggleSwitch from '../ToggleUnitsSwitch/ToggleUnitsSwitch';
-import { formatTime, formatTimeDay } from '../../helpers/dateFormat';
-import unitsData from '../../helpers/unitsData';
+import { formatTime, formatTimeDay } from '../../utils/dateFormat';
+import unitsData from '../../utils/unitsData';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 
 const Weather = () => {
@@ -47,8 +48,7 @@ const Weather = () => {
             <div className="weather">
                 <div className="weather-main">
                     <LocationInput newLocationHandler={setLocation} />
-                    <div className="weather-city">Ooops...</div>
-                    <div className="location-error">{`Can't find this location: ${location}`}</div>
+                    <ErrorMessage location={location} />
                 </div>
             </div>
         );

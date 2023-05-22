@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from 'prop-types';
 import "./ToggleUnitsSwitch.css";
-import unitsData from '../../helpers/unitsData';
+import unitsData from '../../utils/unitsData';
 
 const ToggleUnitsSwitch = ({ setUnits }) => {
 
