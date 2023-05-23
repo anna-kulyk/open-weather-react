@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import "./ToggleUnitsSwitch.css";
 import unitsData from '../../utils/unitsData';
 
-const ToggleUnitsSwitch = ({ setUnits }) => {
+const ToggleUnitsSwitch = ({ setUnits, units }) => {
 
-    const [checkboxChecked, setCheckboxChecked] = useState(false);
+    const [checkboxChecked, setCheckboxChecked] = useState(units.name === 'metric');
 
     const checkboxHandler = () => {
         if (checkboxChecked) {
@@ -33,7 +33,8 @@ const ToggleUnitsSwitch = ({ setUnits }) => {
 };
 
 ToggleUnitsSwitch.propTypes = {
-    setUnits: PropTypes.func.isRequired
+    setUnits: PropTypes.func.isRequired,
+    units: PropTypes.object.isRequired
 }
 
 export default ToggleUnitsSwitch;

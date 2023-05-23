@@ -8,6 +8,7 @@ import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import WeatherCurrent from '../WeatherCurrent/WeatherCurrent';
 import WeatherDetails from '../WeatherDetails/WeatherDetails';
 import WeatherForecast from '../WeatherForecast/WeatherForecast';
+import useLocalStorage from '../../hooks/useLocalStorage';
 import axios from 'axios';
 
 
@@ -20,7 +21,7 @@ const Weather = () => {
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
     const [location, setLocation] = useState('Kyiv');
-    const [units, setUnits] = useState(unitsData['imperial']);
+    const [units, setUnits] = useLocalStorage('units', unitsData['imperial']);
     const [errorMessage, setErrorMessage] = useState('');
     // console.log(weatherData);
 
@@ -72,7 +73,7 @@ const Weather = () => {
             <div className="weather-main">
                 <LocationInput newLocationHandler={setLocation} />
                 <WeatherCurrent weatherData={weatherData} units={units} />
-                <ToggleSwitch setUnits={setUnits} />
+                <ToggleSwitch setUnits={setUnits} units={units} />
             </div>
             <div className="weather-info">
                 <WeatherForecast forecastData={forecastData} units={units} />
