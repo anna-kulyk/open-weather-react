@@ -3,11 +3,11 @@ import LocationInput from '../LocationInput/LocationInput';
 import './Weather.css';
 import Loader from '../Loader/Loader';
 import ToggleSwitch from '../ToggleUnitsSwitch/ToggleUnitsSwitch';
-import { formatTime } from '../../utils/dateFormat';
 import unitsData from '../../utils/unitsData';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import WeatherCurrent from '../WeatherCurrent/WeatherCurrent';
 import WeatherDetails from '../WeatherDetails/WeatherDetails';
+import WeatherForecast from '../WeatherForecast/WeatherForecast';
 
 
 const Weather = () => {
@@ -54,19 +54,6 @@ const Weather = () => {
         );
     }
 
-    const forecastElements = forecastData?.list.slice(0, 8).map((data, index) => {
-        return (
-            <div key={index} className="forecast-block">
-                <div className="forecast-time">{formatTime(data.dt, forecastData.city.timezone)}</div>
-                <div className="forecast-img">
-                    <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
-                        alt={data.weather[0].description} />
-                </div>
-                <div className="forecast-temp">{Math.round(data.main.temp)}{units.temp}</div>
-            </div>
-        );
-    });
-
     return (
         <div className="weather">
             <div className="weather-main">
@@ -75,12 +62,7 @@ const Weather = () => {
                 <ToggleSwitch setUnits={setUnits} />
             </div>
             <div className="weather-info">
-                <div className="weather-forecast forecast">
-                    <div className="forecast-title">Forecast</div>
-                    <div className="forecast-body">
-                        {forecastData && forecastElements}
-                    </div>
-                </div>
+                <WeatherForecast forecastData={forecastData} units={units} />
                 <WeatherDetails weatherData={weatherData} units={units} />
             </div>
             {isLoading && <Loader />}

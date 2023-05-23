@@ -9,7 +9,7 @@ const WeatherDetails = ({ weatherData, units }) => {
     if (ref.current !== null) ref.current.style.transform = `rotate(${weatherData.wind.deg}deg)`;
 
     return (
-        <div className="details">
+        <div className="weather-details details">
             <div className="details-title">Weather details</div>
             <div className="details-body">
                 <div className="details-block">
