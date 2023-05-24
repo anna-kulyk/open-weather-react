@@ -84,7 +84,7 @@ const Weather = () => {
     }
 
     return (
-        <main className="weather">
+        <main className="weather" id="main">
             <div className="weather-main">
                 <LocationInput newLocationHandler={setLocation} />
                 <WeatherCurrent weatherData={weatherData} units={units} />

@@ -1,3 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 @font-face {
   font-family: 'Roboto';
   src: url("./assets/fonts/Roboto-Regular.woff") format("woff");
@@ -57,4 +63,14 @@ body {
 ._icon-humidity:before {
   content: "\e903";
   font-size: 1.3rem;
+}
+
+.skip-to-content-link {
+  left: 50%;
+  position: absolute;
+  transform: translateY(-100%);
+}
+
+.skip-to-content-link:focus {
+  transform: translateY(0%);
 }
