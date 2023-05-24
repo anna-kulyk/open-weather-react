@@ -30,3 +30,9 @@
     justify-content: space-between;
     gap: 2rem;
 }
+
+@media (max-width: 900px) {
+    .weather-info {
+        flex-direction: column-reverse;
+    }
+}

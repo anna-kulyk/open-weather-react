@@ -25,6 +25,12 @@
     gap: 1rem;
 }
 
+@media (max-width: 600px) {
+    .details-body {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 .details-block {
     gap: 1rem;
 }

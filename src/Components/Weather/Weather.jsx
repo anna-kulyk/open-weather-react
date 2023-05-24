@@ -10,7 +10,7 @@ import WeatherDetails from '../WeatherDetails/WeatherDetails';
 import WeatherForecast from '../WeatherForecast/WeatherForecast';
 import useLocalStorage from '../../hooks/useLocalStorage';
 import axios from 'axios';
-
+import getCoords from '../../utils/getCoords';
 
 const Weather = () => {
 
@@ -20,23 +20,38 @@ const Weather = () => {
     const [isFailed, setIsFailed] = useState(false);
     const [weatherData, setWeatherData] = useState(null);
     const [forecastData, setForecastData] = useState(null);
-    const [location, setLocation] = useState('Kyiv');
+    const [location, setLocation] = useLocalStorage('location', '');
     const [units, setUnits] = useLocalStorage('units', unitsData['imperial']);
     const [errorMessage, setErrorMessage] = useState('');
-    // console.log(weatherData);
+    const [coords, setCoords] = useState();
 
-    // if (window.navigator.geolocation) {
-    //     window.navigator.geolocation
-    //         .getCurrentPosition(console.log, console.log);
-    // }
+    useEffect(() => {
+        if (location === '') {
+            setIsLoading(true);
+            getCoords()
+                .then((coordsData) => setCoords(coordsData))
+                .catch(() => setCoords(null));
+        }
+    }, [location])
 
     useEffect(() => {
         setIsFailed(false);
         setIsLoading(true);
 
+        let queryLocation;
+        if (location) {
+            queryLocation = `q=${location}`;
+        } else if (coords) {
+            queryLocation = `lat=${coords.lat}&lon=${coords.lon}`;
+        } else if (coords === null) {
+            queryLocation = 'q=Kyiv';
+        } else {
+            return;
+        }
+
         axios.all([
-            axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${API_KEY}&units=${units.name}`),
-            axios.get(`https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${API_KEY}&units=${units.name}`)
+            axios.get(`https://api.openweathermap.org/data/2.5/weather?${queryLocation}&appid=${API_KEY}&units=${units.name}`),
+            axios.get(`https://api.openweathermap.org/data/2.5/forecast?${queryLocation}&appid=${API_KEY}&units=${units.name}`)
         ])
             .then(axios.spread((weather, forecast) => {
                 setWeatherData(weather.data);
@@ -51,7 +66,7 @@ const Weather = () => {
                 }
             })
             .finally(() => setIsLoading(false));
-    }, [location, units]);
+    }, [location, units, coords]);
 
     if (!isFailed && (!weatherData || !forecastData)) return (
         <Loader />
