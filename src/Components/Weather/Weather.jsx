@@ -74,17 +74,17 @@ const Weather = () => {
 
     if (isFailed) {
         return (
-            <div className="weather">
+            <main className="weather">
                 <div className="weather-main">
                     <LocationInput newLocationHandler={setLocation} />
                     <ErrorMessage errorMessage={errorMessage} />
                 </div>
-            </div>
+            </main>
         );
     }
 
     return (
-        <div className="weather">
+        <main className="weather">
             <div className="weather-main">
                 <LocationInput newLocationHandler={setLocation} />
                 <WeatherCurrent weatherData={weatherData} units={units} />
@@ -95,7 +95,7 @@ const Weather = () => {
                 <WeatherDetails weatherData={weatherData} units={units} />
             </div>
             {isLoading && <Loader />}
-        </div>
+        </main>
     );
 };
 
