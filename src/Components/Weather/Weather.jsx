@@ -26,7 +26,7 @@ const Weather = () => {
     const [coords, setCoords] = useState();
 
     useEffect(() => {
-        if (location === '') {
+        if (!location) {
             setIsLoading(true);
             getCoords()
                 .then((coordsData) => setCoords(coordsData))
@@ -35,6 +35,8 @@ const Weather = () => {
     }, [location])
 
     useEffect(() => {
+        if (!location && coords === undefined) return;
+
         setIsFailed(false);
         setIsLoading(true);
 
@@ -43,10 +45,8 @@ const Weather = () => {
             queryLocation = `q=${location}`;
         } else if (coords) {
             queryLocation = `lat=${coords.lat}&lon=${coords.lon}`;
-        } else if (coords === null) {
-            queryLocation = 'q=Kyiv';
         } else {
-            return;
+            queryLocation = 'q=Kyiv';
         }
 
         axios.all([
