@@ -18,6 +18,7 @@ const LocationInput = ({ newLocationHandler }) => {
         <input type="text"
             className='location-input'
             placeholder='Enter location...'
+            aria-label='location'
             value={locationInput}
             onChange={(e) => setLocationInput(e.target.value)}
             onBlur={inputLocationHandler}
