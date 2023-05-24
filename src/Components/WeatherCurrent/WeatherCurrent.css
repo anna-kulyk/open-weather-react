@@ -13,6 +13,7 @@
 
 .weather-city {
     font-size: 4.5rem;
+    font-weight: normal;
 }
 
 @media (max-width: 600px) {

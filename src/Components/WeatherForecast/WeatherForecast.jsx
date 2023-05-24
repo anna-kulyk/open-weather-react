@@ -19,7 +19,7 @@ const WeatherForecast = ({ forecastData, units }) => {
 
     return (
         <div className="weather-forecast forecast">
-            <div className="forecast-title">Forecast</div>
+            <h2 className="forecast-title">Forecast</h2>
             <div className="forecast-body">
                 {forecastData && forecastElements}
             </div>

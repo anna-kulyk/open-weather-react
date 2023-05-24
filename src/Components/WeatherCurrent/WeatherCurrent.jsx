@@ -6,7 +6,7 @@ const WeatherCurrent = ({ weatherData, units }) => {
     return (
         <div className="weather-current">
             <div className="weather-location">
-                <div className="weather-city">{weatherData.name}</div>
+                <h1 className="weather-city">{weatherData.name}</h1>
                 <div className="weather-day">{`${weatherData.sys.country}, ${formatTimeDay(weatherData.dt, weatherData.timezone)}`}</div>
             </div>
             <img className='weather-image'

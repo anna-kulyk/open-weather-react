@@ -10,7 +10,7 @@ const WeatherDetails = ({ weatherData, units }) => {
 
     return (
         <div className="weather-details details">
-            <div className="details-title">Weather details</div>
+            <h2 className="details-title">Weather details</h2>
             <div className="details-body">
                 <div className="details-block">
                     <div>Humidity</div>

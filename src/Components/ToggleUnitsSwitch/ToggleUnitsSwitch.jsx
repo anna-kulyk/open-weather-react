@@ -23,7 +23,7 @@ const ToggleUnitsSwitch = ({ setUnits, units }) => {
                 <input type="checkbox" className="checkbox"
                     name="checkbox" id="checkbox"
                     checked={checkboxChecked} onChange={checkboxHandler} />
-                <label className="label" htmlFor="checkbox">
+                <label role="radio" className="label" htmlFor="checkbox" aria-label="checkbox" tabIndex="0">
                     <span className="inner" />
                     <span className="switch" />
                 </label>
