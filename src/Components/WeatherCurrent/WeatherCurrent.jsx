@@ -10,7 +10,7 @@ const WeatherCurrent = ({ weatherData, units }) => {
                 <div className="weather-day">{`${weatherData.sys.country}, ${formatTimeDay(weatherData.dt, weatherData.timezone)}`}</div>
             </div>
             <img className='weather-image'
-                src={`http://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
+                src={`https://openweathermap.org/img/wn/${weatherData.weather[0].icon}@2x.png`}
                 alt={weatherData.weather[0].description}
                 title={weatherData.weather[0].description} />
             <div className="weather-temperature">

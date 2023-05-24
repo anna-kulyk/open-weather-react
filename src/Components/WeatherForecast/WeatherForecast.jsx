@@ -9,7 +9,7 @@ const WeatherForecast = ({ forecastData, units }) => {
             <div key={index} className="forecast-block">
                 <div className="forecast-time">{formatTime(data.dt, forecastData.city.timezone)}</div>
                 <div className="forecast-img">
-                    <img src={`http://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
+                    <img src={`https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`}
                         alt={data.weather[0].description} />
                 </div>
                 <div className="forecast-temp">{Math.round(data.main.temp)}{units.temp}</div>
